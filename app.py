@@ -60,7 +60,7 @@ def create_pdf(customer_name, df_data, avg_gas, avg_with_vat, bg_raw, bg_final):
     pdf.set_font("Arial", 'B', 14)
     pdf.cell(0, 10, txt=f"4. FINAL BG = {bg_final:,.2f} THB", ln=1)
     
-    return pdf.output(dest='S').encode('latin-1')
+    return pdf.output(dest='S').encode('latin-1', 'ignore')
 
 # --- Main App ---
 st.title("💰 BG Calculator Platform")
@@ -95,3 +95,4 @@ if st.button("Calculate BG", type="primary"):
         
         pdf_bytes = create_pdf(customer_name, edited_df, avg, avg_vat, raw, final)
         st.download_button("Download PDF Report", data=pdf_bytes, file_name="bg_report.pdf", mime="application/pdf")
+
